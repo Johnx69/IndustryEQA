@@ -35,24 +35,31 @@
       rel="stylesheet"
     />
 
-    <link rel="stylesheet" href="./static/css/bulma.min.css" />
-    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
-    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
-    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.4/css/bulma.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
     />
-    <link rel="stylesheet" href="./static/css/index.css" />
     <link rel="icon" href="./static/images/favicon.png" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script defer src="./static/js/fontawesome.all.min.js"></script>
-    <script src="./static/js/bulma-carousel.min.js"></script>
-    <script src="./static/js/bulma-slider.min.js"></script>
-    <script src="./static/js/index.js"></script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"
+    ></script>
 
     <style>
+      body {
+        font-family: "Noto Sans", sans-serif;
+      }
+
       .industry-logo {
         font-variant: small-caps;
         font-weight: bold;
@@ -72,6 +79,12 @@
         padding: 1rem;
         margin: 0.5rem 0;
         border-radius: 0 8px 8px 0;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .category-card:hover {
+        transform: translateX(5px);
+        box-shadow: 0 4px 15px rgba(46, 92, 184, 0.2);
       }
 
       .stats-card {
@@ -81,12 +94,403 @@
         border-radius: 12px;
         text-align: center;
         margin: 0.5rem;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .stats-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
       }
 
       .highlight-number {
         font-size: 2rem;
         font-weight: bold;
         display: block;
+      }
+
+      .publication-title {
+        font-family: "Google Sans", sans-serif;
+      }
+
+      .publication-authors {
+        font-family: "Google Sans", sans-serif;
+      }
+
+      .publication-authors a {
+        color: hsl(204, 86%, 53%) !important;
+      }
+
+      .publication-authors a:hover {
+        text-decoration: underline;
+      }
+
+      .author-block {
+        display: inline-block;
+      }
+
+      /* Full-width image styling */
+      .full-width-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+      }
+
+      .full-width-image:hover {
+        transform: scale(1.02);
+      }
+
+      .image-container {
+        width: 100%;
+        margin: 1.5rem 0;
+      }
+
+      /* Carousel styling */
+      .qa-carousel {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+
+      .carousel-container {
+        display: flex;
+        transition: transform 0.5s ease;
+        width: 1000%; /* 10 slides × 100% */
+      }
+
+      .carousel-slide {
+        width: 10%; /* 100% / 10 slides */
+        flex-shrink: 0;
+        padding: 2rem;
+        background: linear-gradient(145deg, #f8f9fa 0%, #e9ecef 100%);
+        border-right: 1px solid #dee2e6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        min-height: 500px;
+      }
+
+      .carousel-slide:last-child {
+        border-right: none;
+      }
+
+      .slide-image {
+        width: 100%;
+        height: auto;
+        max-height: 200px;
+        object-fit: contain;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+      }
+
+      .slide-image:hover {
+        transform: scale(1.02);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+
+      .slide-image-container {
+        width: 100%;
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #f8f9fa;
+        border-radius: 8px;
+        margin-bottom: 1rem;
+        overflow: hidden;
+        border: 1px solid #e9ecef;
+      }
+
+      .slide-image-wide {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        object-fit: contain;
+        transition: transform 0.3s ease;
+      }
+
+      .slide-image-wide:hover {
+        transform: scale(1.02);
+      }
+
+      .slide-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+      }
+
+      .qa-metadata {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1rem;
+        padding: 0.5rem;
+        background: rgba(46, 92, 184, 0.1);
+        border-radius: 6px;
+        font-size: 0.8rem;
+      }
+
+      .qa-id {
+        font-weight: bold;
+        color: #2e5cb8;
+      }
+
+      .qa-type {
+        background: #2e5cb8;
+        color: white;
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .qa-question {
+        font-weight: 600;
+        color: #2e5cb8;
+        margin-bottom: 0.75rem;
+        font-size: 0.95rem;
+        text-align: left;
+        line-height: 1.4;
+      }
+
+      .qa-answer {
+        color: #495057;
+        margin-bottom: 0.5rem;
+        font-size: 0.9rem;
+        text-align: left;
+        font-weight: 500;
+      }
+
+      .qa-reasoning {
+        color: #6c757d;
+        font-style: italic;
+        font-size: 0.85rem;
+        line-height: 1.4;
+        text-align: left;
+        padding: 0.5rem;
+        background: rgba(108, 117, 125, 0.1);
+        border-radius: 4px;
+        border-left: 3px solid #6c757d;
+      }
+
+      .carousel-controls {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: 1rem;
+        gap: 1rem;
+      }
+
+      .carousel-btn {
+        background: #2e5cb8;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+      }
+
+      .carousel-btn:hover {
+        background: #1e4a8c;
+        transform: scale(1.1);
+      }
+
+      .carousel-btn:disabled {
+        background: #adb5bd;
+        cursor: not-allowed;
+        transform: scale(1);
+      }
+
+      .carousel-indicators {
+        display: flex;
+        gap: 0.5rem;
+      }
+
+      .indicator {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #dee2e6;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .indicator.active {
+        background: #2e5cb8;
+        transform: scale(1.2);
+      }
+
+      /* Button improvements */
+      .button.is-dark:hover {
+        background-color: #2e5cb8 !important;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Table improvements */
+      .table {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        margin: 1.5rem 0;
+      }
+
+      .table th {
+        background-color: #2e5cb8;
+        color: white;
+        font-weight: 600;
+        border: none;
+        padding: 1rem;
+      }
+
+      .table td {
+        border: 1px solid #e8e8e8;
+        vertical-align: middle;
+        padding: 0.75rem 1rem;
+      }
+
+      .table tr:hover {
+        background-color: #f8f9fa;
+      }
+
+      /* Placeholder improvements */
+      .video-placeholder {
+        background: linear-gradient(145deg, #f0f0f0 0%, #e0e0e0 100%);
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        border: 2px solid #dee2e6;
+        transition: all 0.3s ease;
+      }
+
+      .video-placeholder:hover {
+        border-color: #2e5cb8;
+        box-shadow: 0 8px 25px rgba(46, 92, 184, 0.1);
+      }
+
+      .placeholder-content {
+        text-align: center;
+        color: #666;
+      }
+
+      .placeholder-content i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: #2e5cb8;
+      }
+
+      /* Responsive design */
+      @media screen and (max-width: 768px) {
+        .stats-card {
+          margin: 0.5rem 0;
+        }
+
+        .highlight-number {
+          font-size: 1.5rem;
+        }
+
+        .category-card {
+          margin: 1rem 0;
+        }
+
+        .publication-title {
+          font-size: 1.8rem !important;
+        }
+
+        .carousel-slide {
+          padding: 1.5rem;
+          min-height: 450px;
+        }
+
+        .slide-image {
+          height: 150px;
+        }
+
+        .slide-image-container {
+          height: 150px;
+        }
+
+        .qa-metadata {
+          flex-direction: column;
+          gap: 0.5rem;
+          text-align: center;
+        }
+
+        .qa-question {
+          font-size: 0.85rem;
+        }
+
+        .qa-answer {
+          font-size: 0.8rem;
+        }
+
+        .qa-reasoning {
+          font-size: 0.75rem;
+        }
+      }
+
+      /* Navigation improvements */
+      .navbar {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background-color: white;
+      }
+
+      .navbar-item:hover {
+        background-color: #f8f9fa;
+        color: #2e5cb8 !important;
+      }
+
+      /* Footer styling */
+      .footer {
+        background-color: #f8f9fa;
+        padding: 3rem 1.5rem 2rem;
+      }
+
+      .footer .icon-link {
+        font-size: 25px;
+        color: #000;
+        transition: all 0.3s ease;
+      }
+
+      .footer .icon-link:hover {
+        color: #2e5cb8;
+        transform: translateY(-2px);
+      }
+
+      /* Code block styling */
+      pre {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+      }
+
+      code {
+        background-color: #f8f9fa;
+        color: #495057;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
       }
     </style>
   </head>
@@ -256,23 +660,10 @@
     <section class="hero teaser">
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <!-- PLACEHOLDER: Main teaser video -->
-          <div
-            style="
-              background: #f0f0f0;
-              height: 400px;
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              border-radius: 10px;
-            "
-          >
-            <div style="text-align: center; color: #666">
-              <i
-                class="fas fa-video"
-                style="font-size: 3rem; margin-bottom: 1rem"
-              ></i>
-              <h3>Main Teaser Video Placeholder</h3>
+          <div class="video-placeholder">
+            <div class="placeholder-content">
+              <i class="fas fa-video"></i>
+              <h3>Main Teaser Video</h3>
               <p>
                 Add your main demo video here showing warehouse scenarios and QA
                 examples
@@ -379,22 +770,20 @@
         <h2 class="title is-3 has-text-centered">Benchmark Overview</h2>
 
         <!-- Environment Showcase -->
-        <div class="columns is-centered" style="margin-bottom: 2rem">
-          <div class="column is-full">
-            <!-- PLACEHOLDER: Environment comparison image -->
-            <figure class="image">
-              <img
-                src="./static/images/warehouse_comparison.png"
-                alt="Comparison of small and large warehouse environments with and without human agents"
-              />
-              <figcaption class="has-text-centered">
-                <small
-                  >Small vs Large warehouses: Empty, without humans, and with
-                  humans scenarios</small
-                >
-              </figcaption>
-            </figure>
-          </div>
+        <div class="image-container">
+          <figure class="image">
+            <img
+              src="./static/images/warehouse_comparison.png"
+              alt="Comparison of small and large warehouse environments"
+              class="full-width-image"
+            />
+            <figcaption class="has-text-centered">
+              <small
+                >Small vs Large warehouses: Empty, without humans, and with
+                humans scenarios</small
+              >
+            </figcaption>
+          </figure>
         </div>
 
         <!-- Categories -->
@@ -432,19 +821,21 @@
         <!-- Data Generation Pipeline -->
         <div style="margin-top: 2rem">
           <h3 class="title is-4 has-text-centered">Data Generation Pipeline</h3>
-          <!-- PLACEHOLDER: Pipeline diagram -->
-          <figure class="image">
-            <img
-              src="./static/images/pipeline_diagram.png"
-              alt="IndustryEQA data generation pipeline"
-            />
-            <figcaption class="has-text-centered">
-              <small
-                >Three-step pipeline: Video Capture → QA Generation & Refinement
-                → Human Filtering</small
-              >
-            </figcaption>
-          </figure>
+          <div class="image-container">
+            <figure class="image">
+              <img
+                src="./static/images/pipeline_diagram.png"
+                alt="IndustryEQA data generation pipeline"
+                class="full-width-image"
+              />
+              <figcaption class="has-text-centered">
+                <small
+                  >Three-step pipeline: Video Capture → QA Generation &
+                  Refinement → Human Filtering</small
+                >
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -454,23 +845,21 @@
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered">Dataset Statistics</h2>
 
-        <div class="columns">
-          <div class="column is-6">
-            <!-- PLACEHOLDER: Question category distribution chart -->
-            <figure class="image">
-              <img
-                src="./static/images/benchmark_distribution.png"
-                alt="Question category distribution pie chart"
-              />
-              <figcaption class="has-text-centered">
-                <small
-                  >Distribution across Equipment Safety, Human Safety, Object
-                  Recognition, Attribute Recognition, Temporal Understanding,
-                  and Spatial Understanding</small
-                >
-              </figcaption>
-            </figure>
-          </div>
+        <div class="image-container">
+          <figure class="image">
+            <img
+              src="./static/images/benchmark_distribution.png"
+              alt="Question category distribution pie chart"
+              class="full-width-image"
+            />
+            <figcaption class="has-text-centered">
+              <small
+                >Distribution across Equipment Safety, Human Safety, Object
+                Recognition, Attribute Recognition, Temporal Understanding, and
+                Spatial Understanding</small
+              >
+            </figcaption>
+          </figure>
         </div>
 
         <!-- Key Statistics Table -->
@@ -515,76 +904,316 @@
       </div>
     </section>
 
-    <!-- Example QA Pairs -->
+    <!-- Example QA Pairs Carousel -->
     <section class="section">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered">Example QA Pairs</h2>
 
-        <!-- PLACEHOLDER: Example screenshots with QA overlays -->
-        <div class="columns is-multiline">
-          <div class="column is-6">
-            <div
-              style="
-                background: #f0f0f0;
-                height: 200px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 10px;
-                margin-bottom: 1rem;
-              "
-            >
-              <div style="text-align: center; color: #666">
-                <i
-                  class="fas fa-exclamation-triangle"
-                  style="font-size: 2rem; margin-bottom: 0.5rem; color: #ff6b6b"
-                ></i>
-                <h4>Equipment Safety Example</h4>
+        <div class="qa-carousel">
+          <!-- For wide/panoramic images, use slide-image-container with slide-image-wide class -->
+          <!-- For regular images, use slide-image class directly -->
+          <div class="carousel-container" id="carouselContainer">
+            <!-- Slide 1 -->
+            <div class="carousel-slide">
+              <div class="slide-image-container">
+                <img
+                  src="./static/images/question1.png"
+                  alt="Equipment Safety Example - Wide Warehouse View"
+                  class="slide-image-wide"
+                />
+              </div>
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 658</span>
+                  <span class="qa-type">Equipment Safety</span>
+                </div>
+                <div class="qa-question">
+                  Q: Concerning the overhead utilities, which statement is
+                  correct? (A) All cables and pipes are enclosed in conduit, (B)
+                  Some electrical cables are exposed and hanging, (C) No
+                  overhead utilities are visible?
+                </div>
+                <div class="qa-answer">
+                  <strong>A:</strong> (B) Some electrical cables are exposed and
+                  hanging.
+                </div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> One side of the aisle is bounded
+                  by a racking structure and stacked pallets with very little
+                  buffer space, while the opposite side remains open.
+                </div>
               </div>
             </div>
-            <div class="content">
-              <p><strong>Q:</strong> Are the blue forklifts safely placed?</p>
-              <p><strong>A:</strong> No.</p>
-              <p>
-                <strong>Reasoning:</strong> The forklifts are parked in the main
-                aisle, blocking the pathway and creating potential collision
-                hazards.
-              </p>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+              <img
+                src="./static/images/question2.png"
+                alt="Human Safety Example"
+                class="slide-image"
+              />
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 762</span>
+                  <span class="qa-type">Human Safety</span>
+                </div>
+                <div class="qa-question">
+                  Q: Is the crouching worker at center using a neutral spine and
+                  bent-knee lifting posture when handling the carton?
+                </div>
+                <div class="qa-answer"><strong>A:</strong> No.</div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> The worker's back is rounded and
+                  the knees are sharply flexed in a deep squat, indicating
+                  awkward stooping rather than the recommended power-lift
+                  stance.
+                </div>
+              </div>
             </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+              <img
+                src="./static/images/question3.png"
+                alt="Object Recognition Example"
+                class="slide-image"
+              />
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 686</span>
+                  <span class="qa-type">Object Recognition</span>
+                </div>
+                <div class="qa-question">
+                  Q: Which of the following pieces of equipment is NOT present
+                  in the scene? A) Hand trucks (dollies), B) Ladder, C) Pallet
+                  jack, D) Forklift?
+                </div>
+                <div class="qa-answer"><strong>A:</strong> D) Forklift.</div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> Hand trucks and a ladder are
+                  clearly visible, but there is no forklift machinery in any
+                  part of the visible area.
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-slide">
+              <img
+                src="./static/images/question4.png"
+                alt="Attribute Recognition Example"
+                class="slide-image"
+              />
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 709</span>
+                  <span class="qa-type">Attribute Recognition</span>
+                </div>
+                <div class="qa-question">
+                  Q: What is the dominant colour of the parked industrial
+                  vehicle on the far-right side of the frame?
+                </div>
+                <div class="qa-answer">
+                  <strong>A:</strong> Blue (with black lift-mast and forks).
+                </div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> The body panels of the forklift
+                  are clearly painted a bright blue, while only the mast and
+                  forks are black, making blue the dominant visible colour.
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="carousel-slide">
+              <img
+                src="./static/images/question5.png"
+                alt="Temporal Understanding Example"
+                class="slide-image"
+              />
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 711</span>
+                  <span class="qa-type">Temporal Understanding</span>
+                </div>
+                <div class="qa-question">
+                  Q: Which of the following objects are positioned in the
+                  extreme back-corner of the warehouse? Choose ALL that apply:
+                  (A) Stacked wooden pallets, (B) Blue forklifts, (C) Cardboard
+                  shipping boxes, (D) Cylindrical metal drums?
+                </div>
+                <div class="qa-answer"><strong>A:</strong> A, B, C.</div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> The corner area contains neat
+                  piles of timber pallets, two idle blue forklifts, and several
+                  cardboard cartons on pallets; there are no cylindrical drums
+                  visible anywhere in the scene.
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="carousel-slide">
+              <img
+                src="./static/images/question6.png"
+                alt="Spatial Understanding Example"
+                class="slide-image"
+              />
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 841</span>
+                  <span class="qa-type">Spatial Understanding</span>
+                </div>
+                <div class="qa-question">
+                  Q: Which direction does the central aisle run relative to the
+                  camera?
+                </div>
+                <div class="qa-answer">
+                  <strong>A:</strong> From front to back.
+                </div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> The aisle leads straight away from
+                  the camera toward the far end of the warehouse.
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="carousel-slide">
+              <img
+                src="./static/images/question7.png"
+                alt="Equipment Safety Example"
+                class="slide-image"
+              />
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 788</span>
+                  <span class="qa-type">Equipment Safety</span>
+                </div>
+                <div class="qa-question">
+                  Q: What primary risk is posed by the unattended flat-bed
+                  trolley left length-wise in the main aisle?
+                </div>
+                <div class="qa-answer">
+                  <strong>A:</strong> Collision with moving vehicles or
+                  pedestrians.
+                </div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> The trolley narrows the aisle
+                  width and lacks any chocks or brakes, so a shallow impact
+                  could propel it into a forklift's path.
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 8 -->
+            <div class="carousel-slide">
+              <img
+                src="./static/images/question8.png"
+                alt="Attribute Recognition Example"
+                class="slide-image"
+              />
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 736</span>
+                  <span class="qa-type">Attribute Recognition</span>
+                </div>
+                <div class="qa-question">
+                  Q: What is the material of the clear warehouse floor—polished
+                  concrete or wooden planks?
+                </div>
+                <div class="qa-answer">
+                  <strong>A:</strong> Polished concrete.
+                </div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> The floor shows continuous joint
+                  lines and a reflective, slightly mottled texture
+                  characteristic of sealed concrete, not wood grain.
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 9 -->
+            <div class="carousel-slide">
+              <img
+                src="./static/images/question9.png"
+                alt="Causal Reasoning Example"
+                class="slide-image"
+              />
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 793</span>
+                  <span class="qa-type">Causal Reasoning</span>
+                </div>
+                <div class="qa-question">
+                  Q: Is the cordoned-off area with cones and tape likely a
+                  result of routine scheduled maintenance or an unexpected
+                  incident creating a potential hazard?
+                </div>
+                <div class="qa-answer">
+                  <strong>A:</strong> An unexpected incident creating a
+                  potential hazard.
+                </div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> The presence of what appears to be
+                  spilled or damaged goods, along with the reactive response of
+                  multiple workers, suggests an unplanned event requiring hazard
+                  control.
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 10 -->
+            <div class="carousel-slide">
+              <img
+                src="./static/images/question10.png"
+                alt="Object Recognition Example"
+                class="slide-image"
+              />
+              <div class="slide-content">
+                <div class="qa-metadata">
+                  <span class="qa-id">ID: 759</span>
+                  <span class="qa-type">Object Recognition</span>
+                </div>
+                <div class="qa-question">
+                  Q: What kind of seating furniture is unusually placed at the
+                  worktable?
+                </div>
+                <div class="qa-answer">
+                  <strong>A:</strong> Upholstered dining chair.
+                </div>
+                <div class="qa-reasoning">
+                  <strong>Reasoning:</strong> A tall, light-coloured cushioned
+                  backrest with decorative studs resembles a household dining
+                  chair, contrasting with typical industrial stools.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Controls -->
+        <div class="carousel-controls">
+          <button class="carousel-btn" id="prevBtn">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+
+          <div class="carousel-indicators" id="indicators">
+            <div class="indicator active" data-slide="0"></div>
+            <div class="indicator" data-slide="1"></div>
+            <div class="indicator" data-slide="2"></div>
+            <div class="indicator" data-slide="3"></div>
+            <div class="indicator" data-slide="4"></div>
+            <div class="indicator" data-slide="5"></div>
+            <div class="indicator" data-slide="6"></div>
+            <div class="indicator" data-slide="7"></div>
+            <div class="indicator" data-slide="8"></div>
+            <div class="indicator" data-slide="9"></div>
           </div>
 
-          <div class="column is-6">
-            <div
-              style="
-                background: #f0f0f0;
-                height: 200px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                border-radius: 10px;
-                margin-bottom: 1rem;
-              "
-            >
-              <div style="text-align: center; color: #666">
-                <i
-                  class="fas fa-hard-hat"
-                  style="font-size: 2rem; margin-bottom: 0.5rem; color: #ffa500"
-                ></i>
-                <h4>Human Safety Example</h4>
-              </div>
-            </div>
-            <div class="content">
-              <p>
-                <strong>Q:</strong> Are workers wearing hard hats for
-                protection?
-              </p>
-              <p><strong>A:</strong> No.</p>
-              <p>
-                <strong>Reasoning:</strong> The workers are wearing baseball
-                caps instead of proper safety helmets.
-              </p>
-            </div>
-          </div>
+          <button class="carousel-btn" id="nextBtn">
+            <i class="fas fa-chevron-right"></i>
+          </button>
         </div>
       </div>
     </section>
@@ -595,12 +1224,12 @@
         <h2 class="title is-3 has-text-centered">Experimental Results</h2>
 
         <!-- Model Performance Comparison -->
-        <div style="margin-bottom: 2rem">
-          <!-- PLACEHOLDER: Performance comparison chart -->
+        <div class="image-container">
           <figure class="image">
             <img
               src="./static/images/model_performance.png"
               alt="Model performance comparison across different VLLMs"
+              class="full-width-image"
             />
             <figcaption class="has-text-centered">
               <small
@@ -665,19 +1294,21 @@
           <h3 class="title is-4 has-text-centered">
             Category-wise Performance Analysis
           </h3>
-          <!-- PLACEHOLDER: Category performance chart -->
-          <figure class="image">
-            <img
-              src="./static/images/category_performance.png"
-              alt="Category-wise performance analysis"
-            />
-            <figcaption class="has-text-centered">
-              <small
-                >Performance breakdown across all six categories for
-                top-performing models</small
-              >
-            </figcaption>
-          </figure>
+          <div class="image-container">
+            <figure class="image">
+              <img
+                src="./static/images/category_performance.png"
+                alt="Category-wise performance analysis"
+                class="full-width-image"
+              />
+              <figcaption class="has-text-centered">
+                <small
+                  >Performance breakdown across all six categories for
+                  top-performing models</small
+                >
+              </figcaption>
+            </figure>
+          </div>
         </div>
       </div>
     </section>
@@ -689,11 +1320,11 @@
 
         <div class="columns">
           <div class="column is-6">
-            <!-- PLACEHOLDER: Frame density impact -->
             <figure class="image">
               <img
                 src="./static/images/frame_density.png"
                 alt="Impact of sampled frame density on performance"
+                class="full-width-image"
               />
               <figcaption class="has-text-centered">
                 <small
@@ -703,11 +1334,11 @@
             </figure>
           </div>
           <div class="column is-6">
-            <!-- PLACEHOLDER: LLM judge sensitivity -->
             <figure class="image">
               <img
                 src="./static/images/llm_judge_sensitivity.png"
                 alt="LLM judge sensitivity analysis"
+                class="full-width-image"
               />
               <figcaption class="has-text-centered">
                 <small
@@ -769,5 +1400,80 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      // Navbar burger functionality
+      document.addEventListener("DOMContentLoaded", function () {
+        const burger = document.querySelector(".navbar-burger");
+        const menu = document.querySelector(".navbar-menu");
+
+        burger.addEventListener("click", function () {
+          burger.classList.toggle("is-active");
+          menu.classList.toggle("is-active");
+        });
+
+        // Carousel functionality
+        let currentSlide = 0;
+        const totalSlides = 10;
+        const container = document.getElementById("carouselContainer");
+        const prevBtn = document.getElementById("prevBtn");
+        const nextBtn = document.getElementById("nextBtn");
+        const indicators = document.querySelectorAll(".indicator");
+
+        function updateCarousel() {
+          const translateX = -currentSlide * 10; // 10% per slide
+          container.style.transform = `translateX(${translateX}%)`;
+
+          // Update indicators
+          indicators.forEach((indicator, index) => {
+            indicator.classList.toggle("active", index === currentSlide);
+          });
+
+          // Update button states
+          prevBtn.disabled = currentSlide === 0;
+          nextBtn.disabled = currentSlide === totalSlides - 1;
+        }
+
+        function nextSlide() {
+          if (currentSlide < totalSlides - 1) {
+            currentSlide++;
+            updateCarousel();
+          }
+        }
+
+        function prevSlide() {
+          if (currentSlide > 0) {
+            currentSlide--;
+            updateCarousel();
+          }
+        }
+
+        function goToSlide(slideIndex) {
+          currentSlide = slideIndex;
+          updateCarousel();
+        }
+
+        // Event listeners
+        nextBtn.addEventListener("click", nextSlide);
+        prevBtn.addEventListener("click", prevSlide);
+
+        indicators.forEach((indicator, index) => {
+          indicator.addEventListener("click", () => goToSlide(index));
+        });
+
+        // Initialize carousel
+        updateCarousel();
+
+        // Auto-play (optional)
+        setInterval(() => {
+          if (currentSlide < totalSlides - 1) {
+            nextSlide();
+          } else {
+            currentSlide = 0;
+            updateCarousel();
+          }
+        }, 5000); // Change slide every 5 seconds
+      });
+    </script>
   </body>
 </html>
