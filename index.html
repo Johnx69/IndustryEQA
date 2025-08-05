@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="description"
+      content="IndustryEQA: The first benchmark for embodied question answering in safety-critical industrial warehouse scenarios."
+    />
+    <meta
+      name="keywords"
+      content="IndustryEQA, Embodied AI, Question Answering, Industrial Safety, Warehouse Robotics"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>IndustryEQA</title>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+
+      gtag("js", new Date());
+
+      gtag("config", "G-PYVRSFMDRL");
+    </script>
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css" />
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css" />
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css"
+    />
+    <link rel="stylesheet" href="./static/css/index.css" />
+    <link rel="icon" href="./static/images/favicon.png" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
+
+    <style>
+      .industry-logo {
+        font-variant: small-caps;
+        font-weight: bold;
+        color: #2e5cb8;
+      }
+
+      .safety-highlight {
+        background: linear-gradient(120deg, #ff6b6b 0%, #ffa500 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        font-weight: bold;
+      }
+
+      .category-card {
+        background: #f8f9fa;
+        border-left: 4px solid #2e5cb8;
+        padding: 1rem;
+        margin: 0.5rem 0;
+        border-radius: 0 8px 8px 0;
+      }
+
+      .stats-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        margin: 0.5rem;
+      }
+
+      .highlight-number {
+        font-size: 2rem;
+        font-weight: bold;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a
+          role="button"
+          class="navbar-burger"
+          aria-label="menu"
+          aria-expanded="false"
+        >
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+      <div class="navbar-menu">
+        <div class="navbar-start" style="flex-grow: 1; justify-content: center">
+          <a class="navbar-item" href="#abstract"> Abstract </a>
+          <a class="navbar-item" href="#benchmark"> Benchmark </a>
+          <a class="navbar-item" href="#results"> Results </a>
+          <a class="navbar-item" href="#dataset"> Dataset </a>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">
+                <img
+                  src="./static/images/logo-new.png"
+                  alt="IndustryEQA"
+                  style="
+                    height: 85px;
+                    vertical-align: middle;
+                    margin-bottom: 28px;
+                    margin-right: 8px;
+                  "
+                />: Pushing the Frontiers of Embodied Question Answering in
+                Industrial Scenarios
+              </h1>
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  <a href="https://jackyfl.github.io">Yifan Li</a
+                  ><sup>1*</sup>,</span
+                >
+                <span class="author-block">
+                  <a href="">Yuhang Chen</a><sup>2*</sup>,</span
+                >
+                <span class="author-block">
+                  <a
+                    href="https://scholar.google.com/citations?user=EOD0QkMAAAAJ&hl=en"
+                    >Anh Dao</a
+                  ><sup>1*</sup>,</span
+                >
+                <span class="author-block">
+                  <a href="https://lichili233.github.io/">Lichi Li</a
+                  ><sup>3</sup>,</span
+                >
+                <span class="author-block">
+                  <a href="https://zhyczy.github.io/">Zhongyi Cai</a
+                  ><sup>1</sup>,</span
+                >
+                <span class="author-block">
+                  <a href="https://zhen-tan-dmml.github.io/">Zhen Tan</a
+                  ><sup>4</sup>,</span
+                >
+                <span class="author-block">
+                  <a href="https://tianlong-chen.github.io/">Tianlong Chen</a
+                  ><sup>2</sup>,</span
+                >
+                <span class="author-block">
+                  <a href="https://www.egr.msu.edu/~yukong/">Yu Kong</a
+                  ><sup>1</sup></span
+                >
+              </div>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block"
+                  ><sup>1</sup>Michigan State University,</span
+                >
+                <span class="author-block"
+                  ><sup>2</sup>University of North Carolina at Chapel
+                  Hill,</span
+                >
+                <span class="author-block"
+                  ><sup>3</sup>Independent Researcher,</span
+                >
+                <span class="author-block"
+                  ><sup>4</sup>Arizona State University</span
+                >
+              </div>
+
+              <div
+                class="is-size-6 has-text-centered"
+                style="margin-top: 0.5rem"
+              >
+                <span>*Equal contribution</span>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <!-- PDF Link -->
+                  <span class="link-block">
+                    <a
+                      href="https://arxiv.org/pdf/2505.20640"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+
+                  <!-- arXiv Link -->
+                  <span class="link-block">
+                    <a
+                      href="https://arxiv.org/abs/2505.20640"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+
+                  <!-- Dataset Link -->
+                  <span class="link-block">
+                    <a
+                      href="https://huggingface.co/datasets/IndustryEQA/IndustryEQA"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-database"></i>
+                      </span>
+                      <span>Dataset</span>
+                    </a>
+                  </span>
+
+                  <!-- Code Link -->
+                  <span class="link-block">
+                    <a
+                      href="https://github.com/JackYFL/IndustryEQA"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Teaser Video Section -->
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <!-- PLACEHOLDER: Main teaser video -->
+          <div
+            style="
+              background: #f0f0f0;
+              height: 400px;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 10px;
+            "
+          >
+            <div style="text-align: center; color: #666">
+              <i
+                class="fas fa-video"
+                style="font-size: 3rem; margin-bottom: 1rem"
+              ></i>
+              <h3>Main Teaser Video Placeholder</h3>
+              <p>
+                Add your main demo video here showing warehouse scenarios and QA
+                examples
+              </p>
+            </div>
+          </div>
+          <h2 class="subtitle has-text-centered" style="margin-top: 1rem">
+            <img
+              src="./static/images/logo-new.png"
+              alt="IndustryEQA"
+              style="height: 35px; margin-bottom: 10px; margin-right: 4px"
+            />
+            introduces the
+            <span class="safety-highlight">first benchmark</span> for embodied
+            question answering in
+            <strong>safety-critical warehouse environments</strong>, bridging
+            the gap between household EQA and real-world industrial
+            applications.
+          </h2>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Statistics -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <div class="columns is-multiline">
+          <div class="column is-3">
+            <div class="stats-card">
+              <span class="highlight-number">1,344</span>
+              <span>QA Pairs Total</span>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="stats-card">
+              <span class="highlight-number">76</span>
+              <span>Episodic Memory Videos</span>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="stats-card">
+              <span class="highlight-number">6</span>
+              <span>Categories Covered</span>
+            </div>
+          </div>
+          <div class="column is-3">
+            <div class="stats-card">
+              <span class="highlight-number">50%+</span>
+              <span>Safety-Focused QAs</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Abstract -->
+    <section class="section" id="abstract">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered has-text-centered">
+          <div class="column is-four-fifths">
+            <h2 class="title is-3">Abstract</h2>
+            <div class="content has-text-justified">
+              <p>
+                Existing Embodied Question Answering (EQA) benchmarks primarily
+                focus on household environments, often overlooking
+                safety-critical aspects and reasoning processes pertinent to
+                industrial settings. This drawback limits the evaluation of
+                agent readiness for real-world industrial applications.
+              </p>
+              <p>
+                To bridge this gap, we introduce <strong>IndustryEQA</strong>,
+                the <em>first</em> benchmark dedicated to evaluating embodied
+                agent capabilities within safety-critical warehouse scenarios.
+                Built upon the NVIDIA Isaac Sim platform, IndustryEQA provides
+                high-fidelity episodic memory videos featuring diverse
+                industrial assets, dynamic human agents, and carefully designed
+                hazardous situations inspired by real-world safety guidelines.
+              </p>
+              <p>
+                The benchmark includes rich annotations covering six categories:
+                <span class="safety-highlight">equipment safety</span>,
+                <span class="safety-highlight">human safety</span>, object
+                recognition, attribute recognition, temporal understanding, and
+                spatial understanding. Additionally, it provides extra reasoning
+                evaluation based on these categories.
+              </p>
+              <p>
+                We propose a comprehensive evaluation framework, including
+                various baseline models, to assess their general perception and
+                reasoning abilities in industrial environments. IndustryEQA aims
+                to steer EQA research towards developing more robust,
+                safety-aware, and practically applicable embodied agents for
+                complex industrial environments.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benchmark Overview -->
+    <section class="section" id="benchmark">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Benchmark Overview</h2>
+
+        <!-- Environment Showcase -->
+        <div class="columns is-centered" style="margin-bottom: 2rem">
+          <div class="column is-full">
+            <!-- PLACEHOLDER: Environment comparison image -->
+            <figure class="image">
+              <img
+                src="./static/images/warehouse_comparison.png"
+                alt="Comparison of small and large warehouse environments with and without human agents"
+              />
+              <figcaption class="has-text-centered">
+                <small
+                  >Small vs Large warehouses: Empty, without humans, and with
+                  humans scenarios</small
+                >
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="columns is-multiline">
+          <div class="column is-6">
+            <div class="category-card">
+              <h4 class="title is-5">🛡️ Safety Categories</h4>
+              <p>
+                <strong>Equipment Safety:</strong> Risks associated with
+                warehouse machinery, pathway obstructions, improper stacking,
+                equipment placement
+              </p>
+              <p>
+                <strong>Human Safety:</strong> Direct risks to human safety,
+                potential collisions, falling hazards, ergonomic issues, PPE
+                usage
+              </p>
+            </div>
+          </div>
+          <div class="column is-6">
+            <div class="category-card">
+              <h4 class="title is-5">🔍 Perception Categories</h4>
+              <p>
+                <strong>Object & Attribute Recognition:</strong> Identifying
+                objects and their characteristics (color, size, shape, state)
+              </p>
+              <p>
+                <strong>Spatial & Temporal Understanding:</strong> Object
+                positions, distances, directions, and sequence of events
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Data Generation Pipeline -->
+        <div style="margin-top: 2rem">
+          <h3 class="title is-4 has-text-centered">Data Generation Pipeline</h3>
+          <!-- PLACEHOLDER: Pipeline diagram -->
+          <figure class="image">
+            <img
+              src="./static/images/pipeline_diagram.png"
+              alt="IndustryEQA data generation pipeline"
+            />
+            <figcaption class="has-text-centered">
+              <small
+                >Three-step pipeline: Video Capture → QA Generation & Refinement
+                → Human Filtering</small
+              >
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dataset Statistics -->
+    <section class="section" id="dataset">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Dataset Statistics</h2>
+
+        <div class="columns">
+          <div class="column is-6">
+            <!-- PLACEHOLDER: Question category distribution chart -->
+            <figure class="image">
+              <img
+                src="./static/images/benchmark_distribution.png"
+                alt="Question category distribution pie chart"
+              />
+              <figcaption class="has-text-centered">
+                <small
+                  >Distribution across Equipment Safety, Human Safety, Object
+                  Recognition, Attribute Recognition, Temporal Understanding,
+                  and Spatial Understanding</small
+                >
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Key Statistics Table -->
+        <div style="margin-top: 2rem">
+          <table
+            class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+          >
+            <thead>
+              <tr>
+                <th>Warehouse Type</th>
+                <th>Number of Videos</th>
+                <th>QA Pairs</th>
+                <th>Reasoning QAs</th>
+                <th>Avg Duration (s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Small Warehouse</strong></td>
+                <td>60</td>
+                <td>971</td>
+                <td>~650</td>
+                <td>85.2</td>
+              </tr>
+              <tr>
+                <td><strong>Large Warehouse</strong></td>
+                <td>16</td>
+                <td>373</td>
+                <td>~250</td>
+                <td>240.0</td>
+              </tr>
+              <tr style="background-color: #f0f0f0; font-weight: bold">
+                <td><strong>Total</strong></td>
+                <td><strong>76</strong></td>
+                <td><strong>1,344</strong></td>
+                <td><strong>~900</strong></td>
+                <td><strong>-</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- Example QA Pairs -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Example QA Pairs</h2>
+
+        <!-- PLACEHOLDER: Example screenshots with QA overlays -->
+        <div class="columns is-multiline">
+          <div class="column is-6">
+            <div
+              style="
+                background: #f0f0f0;
+                height: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                margin-bottom: 1rem;
+              "
+            >
+              <div style="text-align: center; color: #666">
+                <i
+                  class="fas fa-exclamation-triangle"
+                  style="font-size: 2rem; margin-bottom: 0.5rem; color: #ff6b6b"
+                ></i>
+                <h4>Equipment Safety Example</h4>
+              </div>
+            </div>
+            <div class="content">
+              <p><strong>Q:</strong> Are the blue forklifts safely placed?</p>
+              <p><strong>A:</strong> No.</p>
+              <p>
+                <strong>Reasoning:</strong> The forklifts are parked in the main
+                aisle, blocking the pathway and creating potential collision
+                hazards.
+              </p>
+            </div>
+          </div>
+
+          <div class="column is-6">
+            <div
+              style="
+                background: #f0f0f0;
+                height: 200px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 10px;
+                margin-bottom: 1rem;
+              "
+            >
+              <div style="text-align: center; color: #666">
+                <i
+                  class="fas fa-hard-hat"
+                  style="font-size: 2rem; margin-bottom: 0.5rem; color: #ffa500"
+                ></i>
+                <h4>Human Safety Example</h4>
+              </div>
+            </div>
+            <div class="content">
+              <p>
+                <strong>Q:</strong> Are workers wearing hard hats for
+                protection?
+              </p>
+              <p><strong>A:</strong> No.</p>
+              <p>
+                <strong>Reasoning:</strong> The workers are wearing baseball
+                caps instead of proper safety helmets.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results -->
+    <section class="section" id="results">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Experimental Results</h2>
+
+        <!-- Model Performance Comparison -->
+        <div style="margin-bottom: 2rem">
+          <!-- PLACEHOLDER: Performance comparison chart -->
+          <figure class="image">
+            <img
+              src="./static/images/model_performance.png"
+              alt="Model performance comparison across different VLLMs"
+            />
+            <figcaption class="has-text-centered">
+              <small
+                >Direct vs Reasoning scores for Blind LLMs, Multi-Frame VLLMs,
+                and Video VLLMs</small
+              >
+            </figcaption>
+          </figure>
+        </div>
+
+        <!-- Key Findings -->
+        <div class="content">
+          <h3 class="title is-4">Key Findings</h3>
+          <div class="columns">
+            <div class="column">
+              <div class="category-card">
+                <h4 class="title is-6">🎯 Visual Grounding is Critical</h4>
+                <p>
+                  VLLMs substantially outperform Blind LLMs, with leading models
+                  achieving 65%+ Direct Scores vs much lower performance without
+                  visual input.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="category-card">
+                <h4 class="title is-6">🧠 Reasoning Remains Challenging</h4>
+                <p>
+                  Models face significant difficulty with complex causal,
+                  spatial, and temporal understanding crucial for safety
+                  awareness.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="columns">
+            <div class="column">
+              <div class="category-card">
+                <h4 class="title is-6">🏆 Leading Architectures</h4>
+                <p>
+                  o4-mini, Gemini-2.5-Flash, and GPT-4.1 demonstrate superior
+                  performance across both direct and reasoning tasks.
+                </p>
+              </div>
+            </div>
+            <div class="column">
+              <div class="category-card">
+                <h4 class="title is-6">⚠️ Safety Comprehension Gaps</h4>
+                <p>
+                  Models show comparable performance on Equipment vs Human
+                  Safety but reveal substantial room for improvement in both
+                  domains.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category-wise Performance -->
+        <div style="margin-top: 2rem">
+          <h3 class="title is-4 has-text-centered">
+            Category-wise Performance Analysis
+          </h3>
+          <!-- PLACEHOLDER: Category performance chart -->
+          <figure class="image">
+            <img
+              src="./static/images/category_performance.png"
+              alt="Category-wise performance analysis"
+            />
+            <figcaption class="has-text-centered">
+              <small
+                >Performance breakdown across all six categories for
+                top-performing models</small
+              >
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ablation Studies -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered">Ablation Studies</h2>
+
+        <div class="columns">
+          <div class="column is-6">
+            <!-- PLACEHOLDER: Frame density impact -->
+            <figure class="image">
+              <img
+                src="./static/images/frame_density.png"
+                alt="Impact of sampled frame density on performance"
+              />
+              <figcaption class="has-text-centered">
+                <small
+                  >Performance vs number of sampled frames (5-50 frames)</small
+                >
+              </figcaption>
+            </figure>
+          </div>
+          <div class="column is-6">
+            <!-- PLACEHOLDER: LLM judge sensitivity -->
+            <figure class="image">
+              <img
+                src="./static/images/llm_judge_sensitivity.png"
+                alt="LLM judge sensitivity analysis"
+              />
+              <figcaption class="has-text-centered">
+                <small
+                  >Consistency across different LLM judges (GPT-4o-mini vs
+                  Gemini-2.0-flash)</small
+                >
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Citation -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{li2025industryeqa,
+  title={IndustryEQA: Pushing the Frontiers of Embodied Question Answering in Industrial Scenarios},
+  author={Li, Yifan and Chen, Yuhang and Dao, Anh and Li, Lichi and Cai, Zhongyi and Tan, Zhen and Chen, Tianlong and Kong, Yu},
+  journal={arXiv preprint arXiv:2505.20640},
+  year={2025}
+}</code></pre>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <a class="icon-link" href="https://arxiv.org/pdf/2505.20640">
+            <i class="fas fa-file-pdf"></i>
+          </a>
+          <a
+            class="icon-link"
+            href="https://github.com/JackYFL/IndustryEQA"
+            class="external-link"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+        </div>
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+              <p>
+                This website is adapted from the
+                <a href="https://github.com/nerfies/nerfies.github.io"
+                  >Nerfies template</a
+                >. The source code is available on
+                <a href="https://github.com/JackYFL/IndustryEQA">GitHub</a>.
+              </p>
+              <p>
+                IndustryEQA is designed to advance embodied AI research in
+                safety-critical industrial environments. We encourage
+                researchers to build upon this benchmark for developing more
+                robust and practically applicable embodied agents.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
