@@ -88,7 +88,7 @@
       }
 
       .stats-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #00d4aa 0%, #00b4d8 100%);
         color: white;
         padding: 1.5rem;
         border-radius: 12px;
@@ -99,7 +99,7 @@
 
       .stats-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        box-shadow: 0 10px 30px rgba(0, 180, 170, 0.4);
       }
 
       .highlight-number {
@@ -343,7 +343,125 @@
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       }
 
-      /* Table improvements */
+      /* Table Container for Responsive Design */
+      .table-container {
+        overflow-x: auto;
+        margin: 1.5rem 0;
+        border-radius: 8px;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      /* Performance Table improvements */
+      .performance-table {
+        background-color: white;
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 0;
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 0.9rem;
+      }
+
+      .performance-table .method-header {
+        background-color: #2e5cb8;
+        color: white;
+        font-weight: 600;
+        border: 1px solid #1e4a8c;
+        padding: 1rem;
+        text-align: center;
+        vertical-align: middle;
+        min-width: 180px;
+      }
+
+      .performance-table .main-header {
+        background-color: #2e5cb8;
+        color: white;
+        font-weight: 600;
+        border: 1px solid #1e4a8c;
+        padding: 0.8rem;
+        text-align: center;
+        font-size: 1rem;
+      }
+
+      .performance-table .sub-header {
+        background-color: #4a6cc3;
+        color: white;
+        font-weight: 500;
+        border: 1px solid #2e5cb8;
+        padding: 0.7rem;
+        text-align: center;
+        font-size: 0.9rem;
+      }
+
+      .performance-table .metric-header {
+        background-color: #6b7fce;
+        color: white;
+        font-weight: 500;
+        border: 1px solid #4a6cc3;
+        padding: 0.6rem;
+        text-align: center;
+        font-size: 0.85rem;
+        min-width: 80px;
+      }
+
+      .performance-table .category-row {
+        background-color: #f8f9fa;
+      }
+
+      .performance-table .category-header {
+        background-color: #e9ecef;
+        font-weight: 600;
+        font-size: 0.95rem;
+        padding: 0.8rem 1rem;
+        color: #495057;
+        border-top: 2px solid #dee2e6;
+        border-bottom: 1px solid #dee2e6;
+      }
+
+      .performance-table .model-name {
+        background-color: #f8f9fa;
+        font-weight: 500;
+        padding: 0.8rem 1rem;
+        text-align: left;
+        border-right: 2px solid #dee2e6;
+        color: #495057;
+        min-width: 180px;
+      }
+
+      .performance-table td {
+        border: 1px solid #e8e8e8;
+        vertical-align: middle;
+        padding: 0.7rem 0.5rem;
+        text-align: center;
+        color: #495057;
+      }
+
+      .performance-table tr:hover td:not(.category-header) {
+        background-color: #f8f9fa;
+      }
+
+      .performance-table .best-performance {
+        background-color: #f0f8ff;
+      }
+
+      .performance-table .best-performance:hover {
+        background-color: #e6f3ff;
+      }
+
+      .performance-table .best-score {
+        font-weight: bold;
+        color: #2e5cb8;
+        background-color: #e8f2ff;
+        border-left: 3px solid #2e5cb8;
+      }
+
+      .performance-table .best-performance .model-name {
+        background-color: #e8f2ff;
+        font-weight: 600;
+        color: #2e5cb8;
+      }
+
+      /* Regular Table improvements for other sections */
       .table {
         background-color: white;
         border-radius: 8px;
@@ -370,32 +488,58 @@
         background-color: #f8f9fa;
       }
 
-      /* Placeholder improvements */
-      .video-placeholder {
-        background: linear-gradient(145deg, #f0f0f0 0%, #e0e0e0 100%);
-        height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+      /* Video styling */
+      .demo-video {
+        width: 100%;
+        height: auto;
         border-radius: 12px;
-        border: 2px solid #dee2e6;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        margin: 1.5rem 0;
+      }
+
+      /* Navigation improvements */
+      .navbar {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        background-color: white;
+      }
+
+      .navbar-item:hover {
+        background-color: #f8f9fa;
+        color: #2e5cb8 !important;
+      }
+
+      /* Footer styling */
+      .footer {
+        background-color: #f8f9fa;
+        padding: 3rem 1.5rem 2rem;
+      }
+
+      .footer .icon-link {
+        font-size: 25px;
+        color: #000;
         transition: all 0.3s ease;
       }
 
-      .video-placeholder:hover {
-        border-color: #2e5cb8;
-        box-shadow: 0 8px 25px rgba(46, 92, 184, 0.1);
-      }
-
-      .placeholder-content {
-        text-align: center;
-        color: #666;
-      }
-
-      .placeholder-content i {
-        font-size: 3rem;
-        margin-bottom: 1rem;
+      .footer .icon-link:hover {
         color: #2e5cb8;
+        transform: translateY(-2px);
+      }
+
+      /* Code block styling */
+      pre {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 1.5rem;
+        overflow-x: auto;
+        margin: 1.5rem 0;
+      }
+
+      code {
+        background-color: #f8f9fa;
+        color: #495057;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
       }
 
       /* Responsive design */
@@ -446,51 +590,22 @@
         .qa-reasoning {
           font-size: 0.75rem;
         }
-      }
 
-      /* Navigation improvements */
-      .navbar {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        background-color: white;
-      }
+        .leaderboard-table {
+          font-size: 0.9rem;
+        }
 
-      .navbar-item:hover {
-        background-color: #f8f9fa;
-        color: #2e5cb8 !important;
-      }
+        .performance-table {
+          font-size: 0.8rem;
+        }
 
-      /* Footer styling */
-      .footer {
-        background-color: #f8f9fa;
-        padding: 3rem 1.5rem 2rem;
-      }
+        .performance-table .method-header {
+          min-width: 120px;
+        }
 
-      .footer .icon-link {
-        font-size: 25px;
-        color: #000;
-        transition: all 0.3s ease;
-      }
-
-      .footer .icon-link:hover {
-        color: #2e5cb8;
-        transform: translateY(-2px);
-      }
-
-      /* Code block styling */
-      pre {
-        background-color: #f8f9fa;
-        border: 1px solid #e9ecef;
-        border-radius: 8px;
-        padding: 1.5rem;
-        overflow-x: auto;
-        margin: 1.5rem 0;
-      }
-
-      code {
-        background-color: #f8f9fa;
-        color: #495057;
-        font-family: "Courier New", monospace;
-        font-size: 0.9rem;
+        .performance-table .metric-header {
+          min-width: 65px;
+        }
       }
     </style>
   </head>
@@ -660,21 +775,15 @@
     <section class="hero teaser">
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <div class="video-placeholder">
-            <div class="placeholder-content">
-              <i class="fas fa-video"></i>
-              <h3>Main Teaser Video</h3>
-              <p>
-                Add your main demo video here showing warehouse scenarios and QA
-                examples
-              </p>
-            </div>
-          </div>
+          <video class="demo-video" autoplay muted loop controls>
+            <source src="./images/demo_video.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
           <h2 class="subtitle has-text-centered" style="margin-top: 1rem">
             <img
               src="./static/images/logo-new.png"
               alt="IndustryEQA"
-              style="height: 35px; margin-bottom: 10px; margin-right: 4px"
+              style="height: 35px; margin-bottom: -5px; margin-right: 4px"
             />
             introduces the
             <span class="safety-highlight">first benchmark</span> for embodied
@@ -1221,23 +1330,202 @@
     <!-- Results -->
     <section class="section" id="results">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered">Experimental Results</h2>
+        <h2 class="title is-3 has-text-centered">Leaderboard</h2>
+        <div class="has-text-centered" style="margin-bottom: 2rem">
+          Comprehensive evaluation results showing Direct and Reasoning scores
+          across different model categories, human presence scenarios, and
+          warehouse sizes on the IndustryEQA benchmark.
+        </div>
 
-        <!-- Model Performance Comparison -->
-        <div class="image-container">
-          <figure class="image">
-            <img
-              src="./static/images/model_performance.png"
-              alt="Model performance comparison across different VLLMs"
-              class="full-width-image"
-            />
-            <figcaption class="has-text-centered">
-              <small
-                >Direct vs Reasoning scores for Blind LLMs, Multi-Frame VLLMs,
-                and Video VLLMs</small
-              >
-            </figcaption>
-          </figure>
+        <div class="table-container">
+          <table class="performance-table">
+            <thead>
+              <tr>
+                <th rowspan="3" class="method-header">Method</th>
+                <th colspan="4" class="main-header">Direct Score</th>
+                <th colspan="4" class="main-header">Reasoning Score</th>
+              </tr>
+              <tr>
+                <th colspan="2" class="sub-header">Human Presence</th>
+                <th colspan="2" class="sub-header">Warehouse Size</th>
+                <th colspan="2" class="sub-header">Human Presence</th>
+                <th colspan="2" class="sub-header">Warehouse Size</th>
+              </tr>
+              <tr>
+                <th class="metric-header">Human</th>
+                <th class="metric-header">No Human</th>
+                <th class="metric-header">Small</th>
+                <th class="metric-header">Large</th>
+                <th class="metric-header">Human</th>
+                <th class="metric-header">No Human</th>
+                <th class="metric-header">Small</th>
+                <th class="metric-header">Large</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Blind LLMs Category -->
+              <tr class="category-row">
+                <td colspan="9" class="category-header"><em>Blind LLMs</em></td>
+              </tr>
+              <tr>
+                <td class="model-name">GPT-4o-2024-11-20</td>
+                <td>38.10</td>
+                <td>41.68</td>
+                <td>40.06</td>
+                <td>36.53</td>
+                <td>28.67</td>
+                <td>32.18</td>
+                <td>30.54</td>
+                <td>29.52</td>
+              </tr>
+              <tr>
+                <td class="model-name">Gemini-2.0-Flash</td>
+                <td>35.99</td>
+                <td>40.88</td>
+                <td>38.67</td>
+                <td>33.38</td>
+                <td>28.67</td>
+                <td>33.06</td>
+                <td>31.01</td>
+                <td>28.21</td>
+              </tr>
+              <tr>
+                <td class="model-name">DeepSeek-R1</td>
+                <td>37.81</td>
+                <td>40.51</td>
+                <td>39.29</td>
+                <td>33.91</td>
+                <td>27.08</td>
+                <td>30.87</td>
+                <td>29.10</td>
+                <td>27.91</td>
+              </tr>
+              <tr>
+                <td class="model-name">DeepSeek-V3-0324</td>
+                <td>36.10</td>
+                <td>43.98</td>
+                <td>40.42</td>
+                <td>33.18</td>
+                <td>27.83</td>
+                <td>32.84</td>
+                <td>30.50</td>
+                <td>27.51</td>
+              </tr>
+
+              <!-- Multi-Frame VLLMs Category -->
+              <tr class="category-row">
+                <td colspan="9" class="category-header">
+                  <em>Multi-Frame VLLMs</em>
+                </td>
+              </tr>
+              <tr>
+                <td class="model-name">LLaMA-4-Scout</td>
+                <td>51.25</td>
+                <td>50.99</td>
+                <td>51.11</td>
+                <td>52.80</td>
+                <td>46.25</td>
+                <td>40.18</td>
+                <td>43.02</td>
+                <td>42.01</td>
+              </tr>
+              <tr>
+                <td class="model-name">Qwen2.5-VL-72B</td>
+                <td>52.62</td>
+                <td>55.31</td>
+                <td>54.09</td>
+                <td>53.42</td>
+                <td>44.00</td>
+                <td>47.29</td>
+                <td>45.75</td>
+                <td>40.06</td>
+              </tr>
+              <tr>
+                <td class="model-name">InternVL2.5-78B</td>
+                <td>60.71</td>
+                <td>59.73</td>
+                <td>60.17</td>
+                <td>58.58</td>
+                <td>55.00</td>
+                <td>50.44</td>
+                <td>52.57</td>
+                <td>49.60</td>
+              </tr>
+              <tr>
+                <td class="model-name">Claude-3.5-Haiku</td>
+                <td>54.10</td>
+                <td>55.31</td>
+                <td>54.76</td>
+                <td>53.22</td>
+                <td>47.08</td>
+                <td>50.15</td>
+                <td>48.71</td>
+                <td>44.18</td>
+              </tr>
+              <tr>
+                <td class="model-name">GPT-4o-2024-11-20</td>
+                <td>57.23</td>
+                <td>57.52</td>
+                <td>57.39</td>
+                <td>61.39</td>
+                <td>51.50</td>
+                <td>49.49</td>
+                <td>50.43</td>
+                <td>46.39</td>
+              </tr>
+              <tr>
+                <td class="model-name">GPT-4.1-2025-04-14</td>
+                <td>63.95</td>
+                <td>63.53</td>
+                <td>63.72</td>
+                <td>66.42</td>
+                <td>60.33</td>
+                <td>52.49</td>
+                <td>56.16</td>
+                <td>55.22</td>
+              </tr>
+              <tr class="best-performance">
+                <td class="model-name">o4-mini-2025-04-16</td>
+                <td class="best-score">70.22</td>
+                <td class="best-score">69.22</td>
+                <td class="best-score">69.67</td>
+                <td>69.03</td>
+                <td class="best-score">67.58</td>
+                <td class="best-score">67.82</td>
+                <td class="best-score">67.71</td>
+                <td class="best-score">63.25</td>
+              </tr>
+
+              <!-- Video VLLMs Category -->
+              <tr class="category-row">
+                <td colspan="9" class="category-header">
+                  <em>Video VLLMs</em>
+                </td>
+              </tr>
+              <tr>
+                <td class="model-name">Gemini-2.0-Flash</td>
+                <td>56.95</td>
+                <td>59.87</td>
+                <td>58.55</td>
+                <td>65.82</td>
+                <td>38.00</td>
+                <td>38.64</td>
+                <td>38.34</td>
+                <td>54.72</td>
+              </tr>
+              <tr>
+                <td class="model-name">Gemini-2.5-Flash</td>
+                <td>65.21</td>
+                <td>68.05</td>
+                <td>66.76</td>
+                <td class="best-score">70.24</td>
+                <td>60.67</td>
+                <td>59.68</td>
+                <td>60.14</td>
+                <td>61.45</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
 
         <!-- Key Findings -->
@@ -1271,7 +1559,7 @@
               <div class="category-card">
                 <h4 class="title is-6">🏆 Leading Architectures</h4>
                 <p>
-                  o4-mini, Gemini-2.5-Flash, and GPT-4.1 demonstrate superior
+                  Gemini-2.5-Flash, o1-mini, and GPT-4.1 demonstrate superior
                   performance across both direct and reasoning tasks.
                 </p>
               </div>
