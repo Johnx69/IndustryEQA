@@ -351,7 +351,7 @@
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
       }
 
-      /* Performance Table improvements */
+      /* Performance Table improvements - UPDATED COLORS TO #DDDDDD SCALES */
       .performance-table {
         background-color: white;
         border-radius: 8px;
@@ -363,10 +363,10 @@
       }
 
       .performance-table .method-header {
-        background-color: #2e5cb8;
-        color: white;
+        background-color: #bbbbbb; /* Darkest scale of #DDDDDD */
+        color: #333333;
         font-weight: 600;
-        border: 1px solid #1e4a8c;
+        border: 1px solid #aaaaaa; /* Darker border */
         padding: 1rem;
         text-align: center;
         vertical-align: middle;
@@ -374,30 +374,30 @@
       }
 
       .performance-table .main-header {
-        background-color: #2e5cb8;
-        color: white;
+        background-color: #bbbbbb; /* Darkest scale of #DDDDDD */
+        color: #333333;
         font-weight: 600;
-        border: 1px solid #1e4a8c;
+        border: 1px solid #aaaaaa; /* Darker border */
         padding: 0.8rem;
         text-align: center;
         font-size: 1rem;
       }
 
       .performance-table .sub-header {
-        background-color: #4a6cc3;
-        color: white;
+        background-color: #cccccc; /* Medium scale of #DDDDDD */
+        color: #333333;
         font-weight: 500;
-        border: 1px solid #2e5cb8;
+        border: 1px solid #bbbbbb; /* Medium border */
         padding: 0.7rem;
         text-align: center;
         font-size: 0.9rem;
       }
 
       .performance-table .metric-header {
-        background-color: #6b7fce;
-        color: white;
+        background-color: #dddddd; /* Base color #DDDDDD */
+        color: #333333;
         font-weight: 500;
-        border: 1px solid #4a6cc3;
+        border: 1px solid #cccccc; /* Light border */
         padding: 0.6rem;
         text-align: center;
         font-size: 0.85rem;
@@ -542,6 +542,11 @@
         font-size: 0.9rem;
       }
 
+      /* Smooth scrolling for navigation */
+      html {
+        scroll-behavior: smooth;
+      }
+
       /* Responsive design */
       @media screen and (max-width: 768px) {
         .stats-card {
@@ -627,8 +632,10 @@
         <div class="navbar-start" style="flex-grow: 1; justify-content: center">
           <a class="navbar-item" href="#abstract"> Abstract </a>
           <a class="navbar-item" href="#benchmark"> Benchmark </a>
-          <a class="navbar-item" href="#results"> Results </a>
+          <a class="navbar-item" href="#leaderboard"> Leaderboard </a>
           <a class="navbar-item" href="#dataset"> Dataset </a>
+          <a class="navbar-item" href="#examples"> Examples </a>
+          <a class="navbar-item" href="#BibTeX"> Citation </a>
         </div>
       </div>
     </nav>
@@ -763,6 +770,19 @@
                       <span>Code</span>
                     </a>
                   </span>
+
+                  <!-- NEW: Leaderboard Link -->
+                  <span class="link-block">
+                    <a
+                      href="#leaderboard"
+                      class="external-link button is-normal is-rounded is-dark"
+                    >
+                      <span class="icon">
+                        <i class="fas fa-trophy"></i>
+                      </span>
+                      <span>Leaderboard</span>
+                    </a>
+                  </span>
                 </div>
               </div>
             </div>
@@ -775,8 +795,19 @@
     <section class="hero teaser">
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <video class="demo-video" autoplay muted loop controls>
-            <source src="./images/demo_video.mp4" type="video/mp4" />
+          <video
+            class="demo-video"
+            autoplay
+            muted
+            loop
+            controls
+            playsinline
+            preload="metadata"
+          >
+            <source
+              src="./static/videos/demo_video_compressed.mp4"
+              type="video/mp4"
+            />
             Your browser does not support the video tag.
           </video>
           <h2 class="subtitle has-text-centered" style="margin-top: 1rem">
@@ -1014,7 +1045,7 @@
     </section>
 
     <!-- Example QA Pairs Carousel -->
-    <section class="section">
+    <section class="section" id="examples">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered">Example QA Pairs</h2>
 
@@ -1328,7 +1359,7 @@
     </section>
 
     <!-- Results -->
-    <section class="section" id="results">
+    <section class="section" id="leaderboard">
       <div class="container is-max-desktop">
         <h2 class="title is-3 has-text-centered">Leaderboard</h2>
         <div class="has-text-centered" style="margin-bottom: 2rem">
